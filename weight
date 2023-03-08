@@ -1,0 +1,12 @@
+// Product A
+def toCheckGroup = "jp_erleada"
+def targetWeight = null
+//Find the first use of product A
+for(e in subject.events) {
+    if(['discharge', 'admission'].contains(e.code)) {
+        targetWeight = e.tags.weight
+    } else if (e.groups.contains(toCheckGroup)) {
+        subject.tag("weight", targetWeight)
+        break;
+    }
+}
